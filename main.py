@@ -6,12 +6,13 @@ import random
 import keyboard
 import threading
 
+stop_program = False
 def listen_for_quit():
     global stop_program
     while True:
         if keyboard.is_pressed('q'): 
             print("Quitting")
-            os._exit(0)
+            stop_program = True
 
 threading.Thread(target=listen_for_quit).start()
 
@@ -117,7 +118,8 @@ while True: # GAME LOOP
         MoveIcon(SnakeBody[-1], newSnakeHeadPos, 2)
         SnakeBody.pop(-1)
         SnakeBody.insert(0, newSnakeHeadPos)
+    if stop_program:
+        Reset()
     
 
-
-os._exit(1)
+Reset()
