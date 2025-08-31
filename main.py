@@ -39,6 +39,7 @@ def MoveIcon(location:tuple, destination:tuple, type:int=1):
         grid[ly][lx] = 0
         grid[dy][dx] = type
         pyautogui.mouseDown(lx*iconWidth+iconWidth/2, ly*iconHeight+iconHeight/4)
+        time.sleep(0.1)
         pyautogui.moveTo(dx*iconWidth+iconWidth/2, dy*iconHeight+iconHeight/4)
         pyautogui.mouseUp()
     else:
@@ -69,7 +70,7 @@ applecount = desktopIconCount - 3
 def placeApple():
     global applecount
     while True:
-        applePos = (random.randint(desktopIconCount//10+1, 24), random.randint(0, 9))
+        applePos = (random.randint(desktopIconCount//10+1, 23), random.randint(1, 8))
         if applePos != SnakeBody:
             MoveIcon(((applecount+2)//10, (applecount+2)%10), applePos, 3) # add 2 because we take 2 away from the start
             applecount -= 1
